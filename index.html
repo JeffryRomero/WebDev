@@ -2,33 +2,177 @@
 	<head>
 		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
 		<link rel="stylesheet" href="app/css/main.css"/>
+        <link rel="stylesheet" href="app/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="app/css/jquery.gritter.css"/>
+        <link rel="stylesheet" type="text/css" href="app/css/lineiconsStyle.css"/>
+        <link rel="stylesheet" href="app/css/style-responsive.css"/>
+        <link rel="stylesheet" type="text/css" href="app/css/zabuto_calendar.css"/>
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>Proyecto Web</title>
+
+   <!-- <script src="app/css/Chart.js"></script> -->
 	</head>
 
-		<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationController">
-			<div class="container">
-				<div ng-show="!loggedIn"> <input type="text" ng-model="login.email"> <input type="password" ng-model="login.password"> <button ng-click="logUserIn()">Login</button> <a ui-sref="signUp">Create An Account</a></div>
-				<div ng-show="loggedIn"> <a ui-sref="editProfile">Edit Profile</a>
-			                                <a ng-click="logOut();">Logout</a>
-                </div>
-            </div>
-		</nav>
 
-	<body>
-		<div ui-view></div>
+
+
+   <body ng-controller="NavigationController">
+
+
+
+		 	<script src="node_modules/angular/angular.js"></script>
+     	<!--<script src="angular-route.js"> </script>-->
+     	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script>
+ 			<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+			<script src="app/app.js"></script>
+
+
+      <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg" ng-controller="NavigationController">
+             <!-- <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div> -->
+
+            <!--logo start-->
+            <a ui-sref="main" class="logo"><b>Aplicaciones Web</b></a>
+            <!--logo end-->
+
+            <div class="top-menu">
+            	<ul class="nav pull-right top-menu" ng-controller="NavigationController">
+                    <li><input type="button" value="Login" class="btn btn-primary" ng-show="!loggedIn" ui-sref="login"></li>
+                    <li><input type="button" value="Logout" class="btn btn-primary" ng-show="loggedIn" ng-Click="logOut();"></li>
+            	</ul>
+            </div>
+        </header>
+      <!--header end-->
+
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+			<!--sidebar start-->
+      <aside >
+          <div id="sidebar"  class="row nav nav-collapse" ng-controller="MainController">
+              <!-- sidebar menu start-->
+							<div class="">
+								<ul class="sidebar-menu" id="nav-accordion">
+
+										<p class="centered"><a ui-sref="main"><img src="app/images/mean.png" class="img-square" width="70"></a></p>
+										<!-- <p class="centered"><a image ng-src="{{image}}" class="img-square" width="70"></a></p>-->
+
+										<li class="mt">
+												<a ui-sref="main">
+														<i class="fa fa-home"></i>
+														<span>Inicio</span>
+												</a>
+										</li>
+										<li class="mt">
+												<a ng-show="loggedIn" ui-sref="editProfile">
+														<i class="fa fa-user"></i>
+														<span>Editar Perfil</span>
+												</a>
+										</li>
+                                    </ul>
+							</div>
+
+          </div>
+      </aside>
+
+
+      <!--sidebar end-->
+
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+
+      <!--main content start-->
+      <section id="main-content" class="">
+
+          <div class="">
+              <div class="wrapper">
+
+                  <div class="col-md-9">
+                      <div ui-view></div>
+                  </div>
+
+              </div>
+          </div>
+
+      </section>
+
+      <!--main content end-->
+
+          <!--ADS/calendar-->
+       <!--   <aside class="">
+              <div id="" class=" nav nav-collapse navbar-right" >
+                  <div class="col-md-4 well">
+                      <ul class="sidebar-menu " id="">
+                          <li>
+                              <div class="">
+                                  <div class="">
+                                      <p class="centered">Calendario</p>
+                                      <button class="btn btn-primary">Info</button>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="mt">
+                              <div class="">
+                                  <p>ADS</p>
+                              </div>
+                          </li>
+                          <li class="mt">
+                              <div class="">
+                                  <p>ADS</p>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+
+              </div>
+
+          </aside>
+          -->
+
+      <!-- **********************************************************************************************************************************************************
+      DOWN CONTENT
+      *********************************************************************************************************************************************************** -->
+
+      <!--footer start-->
+      <footer id="footer" class="site-footer navbar navbar-fixed-bottom">
+          <div class="text-center">
+              2016 - Desarrollo Web
+              <!--<a ui-sref="main" class="go-top">
+                  <i class="fa fa-angle-double-up"></i>
+              </a>-->
+          </div>
+      </footer>
+      <!--footer end-->
+
+
+  </section>
+
 	</body>
 
-	<script src="node_modules/angular/angular.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
-	<script src="app/app.js"></script>
-    
     <!-- Controllers -->
 	<script src="app/signup/signup-controller.js"></script>
 	<script src="app/navigation/navigation-controller.js"></script>
 	<script src="app/profile/edit-profile-controller.js"></script>
-    <script src="app/main/main-controller.js"></script>
-    
+  <script src="app/main/main-controller.js"></script>
+
 	<!-- Libraries -->
 	<script src="node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
 	<script src="node_modules/ng-file-upload/dist/ng-file-upload-all.js"></script>
 	<script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.js"></script>
+
+
 </html>

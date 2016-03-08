@@ -8,6 +8,7 @@ var app = express();
 var authenticationController = require('./server/controllers/authentication-controller');
 var profileController = require('./server/controllers/profile-controller');
 var wasteController = require('./server/controllers/waste-controller');
+var resourceController = require('./server/controllers/resource-controller');
 
 mongoose.connect('mongodb://localhost:27017/webdev');
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use(multipartMiddleware);
 app.use('/app', express.static(__dirname + "/app"));
 app.use('/node_modules', express.static(__dirname + "/node_modules"));
+app.use('/assets', express.static(__dirname + "/assets"));
 app.use('/uploads', express.static(__dirname + "/uploads"));
 
 
@@ -34,6 +36,9 @@ app.post('/api/profile/updateBio', profileController.updateBio);
 //Waste
 app.post('/api/waste/post', wasteController.postWaste);
 app.get('/api/waste/get', wasteController.getWastes);
+
+// Resource
+app.post('/api/resource/post', resourceController.postResource);
 
 app.listen('3000', function(){
 	console.log("Listening for localhost 3000");
