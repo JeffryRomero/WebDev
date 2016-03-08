@@ -1,0 +1,11 @@
+<div class="row" ng-controller="NavigationController">
+    <div class="col-sm-6 col-sm-offset-3">
+              <strong>Email:</strong>
+              <input type="text" class="form-control" ng-model="login.email">
+              <strong>Password:</strong>
+              <input type="password" class="form-control" ng-model="login.password">
+              <input type="button" class="btn btn-primary" value="Login" ng-click="logUserIn()">
+              <input type="button" class="btn btn-primary" value="Cancelar" ui-sref="main">
+              <a ui-sref="signUp">Create An Account</a>
+        </div>
+</div>

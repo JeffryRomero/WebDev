@@ -1,25 +1,30 @@
 (function(){
 	angular.module('WebDev')
-	.controller('NavigationController', ['$scope','$http','$state', function($scope, $http, $state){
-		$scope.logUserIn = function(){
-			
+	.controller('NavigationController', ['$scope','$http','$state', function($rootScope, $http, $state){
+        
+		$rootScope.logUserIn = function(){
+            
 			if(localStorage['User-Data']){
-				$scope.loggedIn = true;
+				$rootScope.loggedIn = true;
 			} else{
-				$scope.loggedIn = false;
+				$rootScope.loggedIn = false;
 			}
 
-			$http.post('api/user/login', $scope.login).success(function(response){
+			$http.post('api/user/login', $rootScope.login).success(function(response){
 				localStorage.setItem('User-Data', JSON.stringify(response));
-				$scope.loggedIn = true;
+                window.location.hash = '#/'; //Aqui creo que esta el detalle 
+				$rootScope.loggedIn = true;
 			}).error(function(error){
 				console.error(error);
 			});
 		};
         
-        $scope.logOut = function(){
+        $rootScope.logOut = function(){
             localStorage.clear();
-            $scope.loggedIn = false;
-        }
+            localStorage.removeItem('User-Data');
+            $rootScope.loggedIn = false;
+            $rootScope.login = '';
+            window.location.reload(true);
+        };
 	}]);
 }());
